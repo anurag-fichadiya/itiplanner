@@ -1,0 +1,40 @@
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+  
+      <div >
+        <h3>Sign Up</h3>
+        <div class="fadeIn first">
+          <img src="./../../../assets/images/logo.png" id="icon" alt="User Icon" />
+        </div>
+        <div>
+          <input  type="email" id="login" class="fadeIn second" name="login" placeholder="Email Address" #userEmail required>
+        </div>
+  
+        <div>
+          <input type="password" id="password" class="fadeIn third" name="login" placeholder="password"  type="password"  #userPwd required>
+        </div>
+  
+        <div class="formGroup">
+          <input type="submit" class="fadeIn fourth" value="Sign Up" (click)="authService.SignUp(userEmail.value, userPwd.value)">
+        </div>
+  
+        <div class="formGroup">
+          <span class="or"><span class="orInner">Or</span></span>
+        </div>
+  
+        <!-- Continue with Google -->
+        <div class="formGroup">
+          <button type="button" class="loginBtn loginBtn--google" (click)="authService.GoogleAuth()">
+            <i class="fab fa-google-plus-g"></i>
+            Continue with Google
+          </button>
+        </div>
+  
+      </div>
+  
+      <div id="formFooter">
+        <span class="underlineHover" href="#" ><span class="redirect" routerLink="/sign-in">Already have an account? Log In</span></span>
+      </div>
+    </div>
+  
+  </div>

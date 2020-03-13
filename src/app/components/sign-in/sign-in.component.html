@@ -1,0 +1,44 @@
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <div>
+
+      <div class="fadeIn first">
+        <img src="./../../../assets/images/logo.png" id="icon" alt="User Icon" />
+      </div>
+
+      <div>
+        <input type="email" id="login" class="fadeIn second" name="login" placeholder="login" #userName required>
+      </div>
+
+      <div>
+        <input type="password" id="password" class="fadeIn third" name="login" placeholder="password" #userPassword required>
+      </div>
+
+      <!-- Calling SignIn Api from AuthService -->
+      <div>
+        <input type="submit" class="fadeIn fourth" value="Log In" (click)="authService.SignIn(userName.value, userPassword.value)">
+      </div>
+
+      <div>
+        <span class="or"><span class="orInner">Or</span></span>
+      </div>
+
+      <!-- Calling GoogleAuth Api from AuthService -->
+      <div>
+        <button type="button" class="loginBtn loginBtn--google" (click)="authService.GoogleAuth()">
+          <i class="fab fa-google-plus-g"></i>
+          Log in with Google
+        </button>
+      </div>
+
+      <div id="formFooter">
+        <span class="underlineHover" href="#" routerLink="/forgot-password">Forgot Password?</span>
+      </div>
+    </div>
+
+    <div id="formFooter">
+      <span class="underlineHover" href="#"><span class="redirect" routerLink="/register-user"> Don't have an account? Sign Up</span></span>
+    </div>
+
+  </div>
+</div>
