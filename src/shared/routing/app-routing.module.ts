@@ -9,6 +9,7 @@ import { DashboardComponent } from '../../app/components/dashboard/dashboard.com
 import { ForgotPasswordComponent } from '../../app/components/forgot-password/forgot-password.component';
 import { AuthGuard } from "../guard/auth.guard";
 import { VerifyEmailComponent } from '../../app/components/verify-email/verify-email.component';
+import { SearchComponent } from 'src/app/components/search/search.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/sign-in', pathMatch: 'full' },
@@ -16,7 +17,9 @@ const routes: Routes = [
   { path: 'register-user', component: SignUpComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
-  { path: 'verify-email-address', component: VerifyEmailComponent }
+  { path: 'verify-email-address', component: VerifyEmailComponent },
+  { path: 'search', component: SearchComponent },
+
 ];
 
 @NgModule({

@@ -1,0 +1,15 @@
+<div class='card' *ngIf="authService.userData as user">
+    <div class='card-header'>
+      <img class="align-self-start mr-5 img-thumbnail rounded-circle"  height="42" width="42" src="{{(user.photoURL) ? user.photoURL : './../../../../assets/images/dummy_user.png'}}"
+                    alt="{{user.displayName}}">
+      Hello {{user.displayName}} !
+      <ul class='nav nav-pills'>
+        <li><a class='nav-link' routerLinkActive='active' [routerLink]="['/dashboard']">Dashboard</a></li>
+        <li><a class='nav-link' routerLinkActive='active' [routerLink]="['/search']" >Search</a></li>
+        <li><a class='nav-link' routerLinkActive='active' [routerLink]="['/profile']">Profile</a></li>
+        <li><a class='nav-link' routerLinkActive='active' [routerLink]="['/customize']">Customize</a></li>
+        <li><a class='nav-link' routerLinkActive='active' [routerLink]="['/settings']">Settings</a></li>
+        <li><a class='nav-link' routerLinkActive='active' [routerLink]="['/sign-in']" (click)="authService.SignOut()">Logout</a></li>
+      </ul>
+    </div>
+</div>

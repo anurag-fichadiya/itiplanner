@@ -2,10 +2,7 @@ import { Injectable, NgZone } from "@angular/core";
 import { User } from "../services/user";
 import { auth } from "firebase/app";
 import { AngularFireAuth } from "@angular/fire/auth";
-import {
-  AngularFirestore,
-  AngularFirestoreDocument
-} from "@angular/fire/firestore";
+import {  AngularFirestore, AngularFirestoreDocument } from "@angular/fire/firestore";
 import { Router } from "@angular/router";
 import { AngularFireDatabase } from "@angular/fire/database";
 import { UserDetail } from "src/app/Interfaces/user-detail";
@@ -29,8 +26,8 @@ export class AuthService {
       if (user) {
         this.userData = user;
         localStorage.setItem("user", JSON.stringify(this.userData));
-        console.log(this.userData);
-        JSON.parse(localStorage.getItem("user"));
+        console.log("from main afauth - authstate", this.userData);
+        console.log("from main afauth - authstate localstorage",JSON.parse(localStorage.getItem("user")));
       } else {
         this.userData = null;
         localStorage.setItem("user", null);
@@ -45,9 +42,12 @@ export class AuthService {
       .signInWithEmailAndPassword(email, password)
       .then(result => {
         this.ngZone.run(() => {
+          console.log("from signin frunction \n ", result.user);
+          this.userData = result.user;
+          localStorage.setItem("user", JSON.stringify(this.userData));
+          this.SetUserData(result.user);
           this.router.navigate(["dashboard"]);
         });
-        this.SetUserData(result.user);
       })
       .catch(error => {
         window.alert(error.message);
@@ -64,6 +64,9 @@ export class AuthService {
         this.SetUserDataNew(result.user, mobNo, name);
         this.SendVerificationMail();
         this.SetUserData(result.user);
+        this.userData = result.user;
+        localStorage.setItem("user", JSON.stringify(this.userData));
+        console.log("from SIGNUP  email pwd frunction \n ", result.user);
       })
       .catch(error => {
         window.alert(error.message);
@@ -104,12 +107,17 @@ export class AuthService {
   AuthLogin(provider) {
     return this.afAuth.auth
       .signInWithPopup(provider)
-      .then(result => {
-        this.ngZone.run(() => {
+      .then(result => 
+      {
+        this.ngZone.run(() => 
+        {
+          this.SetUserData(result.user);
+          console.log("from authlogin frunction \n ", result.user);
+          this.userData = result.user;
+          localStorage.setItem("user", JSON.stringify(this.userData));
           console.log("login success - redirecting", this.userData);
           this.router.navigate(["dashboard"]);
         });
-        this.SetUserData(result.user);
       })
       .catch(error => {
         window.alert(error);

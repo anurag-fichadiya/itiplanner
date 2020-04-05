@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { HttpClientModule} from '@angular/common/http';
+import { FormsModule } from '@angular/forms'
+ 
 import { AppComponent } from './app.component';
 
 import { AngularFireModule } from "@angular/fire";
@@ -18,9 +20,13 @@ import { AppRoutingModule } from './../shared/routing/app-routing.module';
 import { AuthService } from 'src/shared/services/auth.service';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 
-import {city} from './../shared/Interfaces/iternary'
 import { DataService } from 'src/shared/services/data.service';
 import { KeysPipe } from './components/dashboard/dashboard.pipe';
+import { StarComponent } from './components/dashboard/star.component';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { SearchComponent } from './components/search/search.component';
+import { TopBarComponent } from './components/top-bar/top-bar.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +35,10 @@ import { KeysPipe } from './components/dashboard/dashboard.pipe';
     SignUpComponent,
     VerifyEmailComponent,
     ForgotPasswordComponent,
-    KeysPipe
+    KeysPipe,
+    StarComponent,
+    SearchComponent,
+    TopBarComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,7 +46,10 @@ import { KeysPipe } from './components/dashboard/dashboard.pipe';
     AngularFireAuthModule,
     AngularFirestoreModule,
     AngularFireDatabaseModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    AngularFontAwesomeModule,
+    FormsModule
   ],
   providers: [AuthService, DataService],
   bootstrap: [AppComponent]

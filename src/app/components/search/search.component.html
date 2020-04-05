@@ -1,0 +1,41 @@
+<app-top-bar></app-top-bar>
+<!--WHOLE ITI LIST BELOW-->
+<div class='row' style="margin-top: 0.8em; margin-bottom: 0.8em;">
+    <div class='col-md-2'>
+        Filter by:
+    </div>
+    <div class='col-md-4'>
+        <input type='text' [(ngModel)]='listFilter' />
+    </div>
+</div>
+<div class='row' *ngIf='listFilter'>
+    <div class='col-md-6'>
+        <h6>Filtered by: {{listFilter}}</h6>
+    </div>
+</div>
+<div class='card' *ngIf="authService.userData as user">
+    <div class='card-body'>
+        <table class="table table-striped" *ngFor = 'let city of filteredItineraryList'>
+            City : {{city.$key}} <!--is Goa/Gujarat/etc.-->
+            <tr scope="col" *ngFor = 'let itir of city | keys'>
+            <!--<td> {{itir.$key}} </td> <!--Goa 1, Goa 2, etc.-->
+            <td> Total No. of Days: {{itir.daysCount}} </td>
+            <td> Rating : {{itir.ratings}} </td>
+            <td>
+            <table class="table table-striped" *ngFor = 'let det of itir.placeModels | keys'>
+                <tr scope="col">
+                No of Days: {{det.noOfDays}}<br>
+                Price : {{det.price}}<br>
+                Place : {{det.place}}
+                </tr>
+            </table>
+            </td>
+            <td>
+                <table class="table table-striped" *ngFor = 'let det of itir.tags | keys'>
+                Tag : {{det}}
+                </table>
+            </td>
+            </tr>
+        </table>
+    </div>
+</div>

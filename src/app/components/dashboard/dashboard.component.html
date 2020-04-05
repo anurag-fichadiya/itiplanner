@@ -1,41 +1,36 @@
+<app-top-bar> </app-top-bar>
 <div class='card' *ngIf="authService.userData as user">
-  <div class='card-header'>
-    <img class="align-self-start mr-5 img-thumbnail rounded-circle"  height="42" width="42" src="{{(user.photoURL) ? user.photoURL : '/assets/dummy-user.png'}}"
-                  alt="{{user.displayName}}">
-    Hello {{user.displayName}} !
-    See your recommended itineraries !
-  </div>
-  <nav class='navbar navbar-expand navbar-light bg-light'>
-    <ul class='nav nav-pills'>
-      <li><a class='nav-link' routerLinkActive='active' [routerLink]="['/profile']">Profile</a></li>
-      <li><a class='nav-link' routerLinkActive='active' [routerLink]="['/customize']">Customize</a></li>
-      <li><a class='nav-link' routerLinkActive='active' [routerLink]="['/settings']">Settings</a></li>
-      <li><a class='nav-link' routerLinkActive='active' (click)="authService.SignOut()">Logout</a></li>
-    </ul>
-  </nav>
-  <div class='card-body'>
-    <table class="table table-striped" *ngFor = 'let city of ItineraryList'>
-      City : {{city.$key}} <!--is Goa/Gujarat/etc.-->
-      <tr scope="col" *ngFor = 'let itir of city | keys'>
-        <!--<td> {{itir.$key}} </td> <!--Goa 1, Goa 2, etc.-->
-        <td> Total No. of Days: {{itir.daysCount}} </td>
-        <td> Rating : {{itir.ratings}} </td>
-        <td>
-        <table class="table table-striped" *ngFor = 'let det of itir.placeModels | keys'>
-          <tr scope="col">
-            No of Days: {{det.noOfDays}}<br>
-            Price : {{det.price}}<br>
-            Place : {{det.place}}
+  <h3> See your recommended itineraries !  </h3>
+  <div>
+    <div *ngIf = 'reco_list'>
+      <table class="table table-striped" >
+        <thead>
+          <tr scope = "col">
+            <th> ID </th>
+            <th> Days </th>
+            <th> Details </th>
+            <th> Rating </th>
+            <th> Cost </th>
+          </tr>
+        </thead>
+      <tr scope="col" *ngFor = 'let iti of reco_list | keys'>
+        <td> {{iti.id}} </td>
+        <td> {{iti.daysCount}} </td>
+        <table>
+          <tr>
+            <th> place </th>
+            <th> days </th>
+            <th> price </th>
+          </tr>
+          <tr scope="col" *ngFor = 'let item of iti.placeModels | keys'>
+            <td *ngFor = 'let it of item'> {{it}} </td>
           </tr>
         </table>
-        </td>
-        <td>
-          <table class="table table-striped" *ngFor = 'let det of itir.tags | keys'>
-            Tag : {{det}}
-          </table>
-        </td>
+        <td> <pm-star [rating]='iti.ratings'> star </pm-star> </td>
+        <td> {{iti.totalCost | currency:'USD':'symbol':'1.2-2'}} </td>
       </tr>
-    </table>
+      </table>
+    </div>
   </div>
     <!--  PIPING  
     <div *ngFor="let obj of jsonData">
@@ -112,10 +107,10 @@
     </div>
   -->
 </div>
-<div *ngIf='errorMessage'
+<!--<div *ngIf='errorMessage'
      class='alert alert-danger'>
   Error: {{ errorMessage }}
-</div>
+</div>-->
 <!-- Top navigation 
 <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
     <a class="navbar-brand col-sm-3 col-md-2 mr-0" routerLink="/register-student">
