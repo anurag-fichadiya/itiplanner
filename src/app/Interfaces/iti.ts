@@ -1,17 +1,17 @@
-export interface iti
+export class iti
 {
-    Itineraryid : string; 
-    name : string;
-    tag0 : string;
-    tag1 : string;
-    tag2 : string ;
-    tag3 : string;
-    tag4 : string;
-    'total expense' : any;
-    "total days" : any;
-    "expense per day" : any;
-    "average rating" : any;
-    "list of places" : any;
-    "bag_x" : any;
-    "bag_y" : any;
-} 
+    id : string; 
+    city : string;
+    daysCount : string;
+    places : string[];
+    ratings : number;
+    totalCost : number ;
+    /*constructor (id : string, daysCount : string, places : Iplaces, ratings : number, totalCost : number)
+    {
+        this.totalCost = totalCost
+        this.ratings = ratings
+        this.places = places
+        this.id = id
+        this.daysCount = daysCount
+    }*/
+}

@@ -1,8 +1,10 @@
 import { PipeTransform, Pipe } from '@angular/core';
 
 @Pipe({ name: 'keys',  pure: false })
-export class KeysPipe implements PipeTransform {
-    transform(value: any, args?: any[]): any[] {
+export class KeysPipe implements PipeTransform 
+{
+    transform(value: any, args?: any[]): any[] 
+    {
       // check if "routes" exists
       if(value) {
         // create instance vars to store keys and final output

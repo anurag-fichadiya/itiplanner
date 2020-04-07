@@ -1,29 +1,24 @@
 <app-top-bar> </app-top-bar>
-<div class='card' *ngIf="authService.userData as user">
+<div *ngIf="authService.userData as user" >
   <h3> See your recommended itineraries !  </h3>
-  <div>
+  <div class='card' >
     <div *ngIf = 'reco_list'>
       <table class="table table-striped" >
         <thead>
           <tr scope = "col">
-            <th> ID </th>
+            <th> State </th>
             <th> Days </th>
-            <th> Details </th>
+            <th> Places </th>
             <th> Rating </th>
             <th> Cost </th>
           </tr>
         </thead>
       <tr scope="col" *ngFor = 'let iti of reco_list | keys'>
-        <td> {{iti.id}} </td>
+        <td><a style="color: black; text-decoration: none;"  [routerLink]="['/itinerary', iti.id ]">{{iti.city}} </a> </td>
         <td> {{iti.daysCount}} </td>
         <table>
-          <tr>
-            <th> place </th>
-            <th> days </th>
-            <th> price </th>
-          </tr>
-          <tr scope="col" *ngFor = 'let item of iti.placeModels | keys'>
-            <td *ngFor = 'let it of item'> {{it}} </td>
+          <tr scope="col" *ngFor = 'let item of iti.places '>
+            <td>{{item}}</td>
           </tr>
         </table>
         <td> <pm-star [rating]='iti.ratings'> star </pm-star> </td>

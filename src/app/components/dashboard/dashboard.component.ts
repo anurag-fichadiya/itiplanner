@@ -21,7 +21,7 @@ export class DashboardComponent implements OnInit {
     let temp : string ;
     let t = JSON.parse(localStorage.getItem("user"))
     console.log("See this", t.uid)
-    temp = 'http://127.0.0.1:5002/'+t.uid;
+    temp = 'http://127.0.0.1:5002/user/'+t.uid;
     this.httpClient.get<iti[]>(temp).subscribe(data => {
       this.reco_list = data ;
       console.log(this.reco_list);

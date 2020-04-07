@@ -1,24 +1,56 @@
 <app-top-bar></app-top-bar>
-<!--WHOLE ITI LIST BELOW-->
-<div class='row' style="margin-top: 0.8em; margin-bottom: 0.8em;">
-    <div class='col-md-2'>
+<div class='row' style="margin-top: 1.2em; margin-bottom: 1.2em;">
+    <div style = "margin-left : 2em ; margin-right: 2em;">
         Filter by:
     </div>
     <div class='col-md-4'>
         <input type='text' [(ngModel)]='listFilter' />
     </div>
+    <div class='col-md-6' style = "font-style: italic; font-weight: 500;">
+      You can search using name of any tourist place or city !!!
+     </div>
 </div>
 <div class='row' *ngIf='listFilter'>
     <div class='col-md-6'>
         <h6>Filtered by: {{listFilter}}</h6>
     </div>
 </div>
+<!--WHOLE ITI LIST BELOW-->
+<div *ngIf="authService.userData as user" >
+    <div class='card' >
+      <div *ngIf = 'filteredItineraryList'>
+        <table class="table table-striped" >
+          <thead>
+            <tr scope = "col">
+              <th> State </th>
+              <th> Days </th>
+              <th> Places </th>
+              <th> Rating </th>
+              <th> Cost </th>
+            </tr>
+          </thead>
+        <tr scope="col" *ngFor = 'let iti of filteredItineraryList '>
+          <td> <a style="color: black; text-decoration: none;"  [routerLink]="['/itinerary', iti.id ]"> {{iti.city}} </a> </td>
+          <td> {{iti.daysCount}} </td>
+          <table>
+            <tr scope="col" *ngFor = 'let item of iti.places '>
+              <td>{{item}}</td>
+            </tr>
+          </table>
+          <td> <pm-star [rating]='iti.ratings'> star </pm-star> </td>
+          <td> {{iti.totalCost | currency:'USD':'symbol':'1.2-2'}} </td>
+        </tr>
+        </table>
+      </div>
+    </div>
+</div>
+<!--
 <div class='card' *ngIf="authService.userData as user">
     <div class='card-body'>
         <table class="table table-striped" *ngFor = 'let city of filteredItineraryList'>
-            City : {{city.$key}} <!--is Goa/Gujarat/etc.-->
+            City : {{city.$key}} 
             <tr scope="col" *ngFor = 'let itir of city | keys'>
-            <!--<td> {{itir.$key}} </td> <!--Goa 1, Goa 2, etc.-->
+            <td> {{itir.$key}} </td> 
             <td> Total No. of Days: {{itir.daysCount}} </td>
             <td> Rating : {{itir.ratings}} </td>
             <td>
@@ -38,4 +70,4 @@
             </tr>
         </table>
     </div>
-</div>
+</div>-->
