@@ -22,6 +22,7 @@
         <table class="table table-striped" >
           <thead>
             <tr scope = "col">
+              <th> Image </th>
               <th> State </th>
               <th> Days </th>
               <th> Places </th>
@@ -30,6 +31,7 @@
             </tr>
           </thead>
         <tr scope="col" *ngFor = 'let iti of filteredItineraryList '>
+          <td> <img [src] = "iti.imgurl | async" style = "width: 300px; height: 200px ;" /> </td>
           <td> <a style="color: black; text-decoration: none;"  [routerLink]="['/itinerary', iti.id ]"> {{iti.city}} </a> </td>
           <td> {{iti.daysCount}} </td>
           <table>

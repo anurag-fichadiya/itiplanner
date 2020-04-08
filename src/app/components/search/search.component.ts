@@ -4,6 +4,7 @@ import { DataService } from 'src/shared/services/data.service';
 import { HttpClient } from '@angular/common/http';
 
 import { iti } from './../../Interfaces/iti';
+import { AngularFireStorage } from '@angular/fire/storage';
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
@@ -11,16 +12,16 @@ import { iti } from './../../Interfaces/iti';
 })
 export class SearchComponent implements OnInit {
 
-  constructor(public authService :  AuthService, public dataService : DataService, public httpClient : HttpClient ) { }
+  constructor(public authService :  AuthService, public dataService : DataService, public httpClient : HttpClient, private storage : AngularFireStorage ) { }
   
   ItineraryList : iti[] ;
   ItineraryListtemp : iti[] ;
   filteredItineraryList: iti[];
-  temp : string = 'http://127.0.0.1:5002/itinerary';
+  temp : string = 'itinerary';
   
   ngOnInit()
    {
-     return this.dataService.getpy()
+     return this.dataService.getpy(this.temp)
      //.pipe(
     //  map((data) => data.map((item) => (new iti(item))) 
     //)
@@ -36,8 +37,26 @@ export class SearchComponent implements OnInit {
         //}
         //this.ItineraryList = data.map(item => new iti(item))
         //let t = data.map(item => new iti(item))
-        this.filteredItineraryList = this.ItineraryList;
         console.log("See here typeof iti list", typeof(this.ItineraryList))
+        let count = 1;
+        this.ItineraryList.forEach(item => {
+          //const no = Math.floor(Math.random() * 5) + 1;
+          count = count + 1;
+          const nos : string = count.toString();
+          if(count == 5)
+          {
+            count = 1;
+          }
+          let city_name = item.city;
+          if(item.city !== 'Goa' && item.city !== 'Goa' && item.city !== 'Gujarat' && item.city !== 'Himachal Pradesh' &&item.city !== 'Kerala' && item.city !== 'Maharastra' && item.city !== 'Rajasthan' && item.city !== 'Sikkim')
+          {
+            city_name = 'Sikkim';
+          }
+          const tempo = city_name +'/'+ nos +'.jpg';
+          console.log("Prep img url", tempo)
+          item.imgurl = this.storage.ref(tempo).getDownloadURL();
+        });  
+        this.filteredItineraryList = this.ItineraryList;
       })
     /*this.dataService.getAll().snapshotChanges().subscribe(res => {
       //console.log('res', res)

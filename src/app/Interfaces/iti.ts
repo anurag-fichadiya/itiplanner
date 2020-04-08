@@ -1,5 +1,8 @@
+import { Observable } from 'rxjs';
+
 export class iti
 {
+    imgurl : Observable<any>;
     id : string; 
     city : string;
     daysCount : string;

@@ -10,7 +10,7 @@ import { iti } from 'src/app/Interfaces/iti';
 export class DataService 
 {
   _ItineraryList : AngularFireList<city>;
-  url : string = 'http://127.0.0.1:5002/itinerary'
+  url : string = 'http://iti-planner.herokuapp.com/'
   constructor(public db : AngularFireDatabase, private httpClient : HttpClient) {  }
   
   getAll() : AngularFireList<city>  {
@@ -19,8 +19,8 @@ export class DataService
     return this._ItineraryList;
   }//unused now
 
-  getpy() 
+  getpy(a : string) 
   {
-     return this.httpClient.get<iti[]>(this.url);
+     return this.httpClient.get<iti[]>(this.url + a);
   }
 }

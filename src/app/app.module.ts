@@ -19,7 +19,7 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
 import { AppRoutingModule } from './../shared/routing/app-routing.module';
 import { AuthService } from 'src/shared/services/auth.service';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
-
+import { AngularFireStorageModule } from "@angular/fire/storage";
 import { DataService } from 'src/shared/services/data.service';
 import { KeysPipe } from './components/dashboard/dashboard.pipe';
 import { StarComponent } from './components/dashboard/star.component';
@@ -48,6 +48,7 @@ import { ItiDetailsComponent } from './components/iti-details/iti-details.compon
     AngularFireAuthModule,
     AngularFirestoreModule,
     AngularFireDatabaseModule,
+    AngularFireStorageModule,
     AppRoutingModule,
     HttpClientModule,
     AngularFontAwesomeModule,

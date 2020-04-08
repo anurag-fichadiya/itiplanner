@@ -3,23 +3,28 @@
 <h3> The details of your itinerary are here!</h3>
 
 <div class='card' *ngIf="authService.userData as user"  >
-    <div *ngIf = "itir">
-    <h6>State: {{itir.city}}</h6>
-    <h6>Number Of Days: {{itir.daysCount}}</h6>
-    <table class="table table-striped" >
-        <thead>
-            <tr>
-                <th> Place </th>
-                <th> No. Of Days </th>
-                <th> Price </th>
-            </tr>
-        </thead>
-        <tr scope="col" *ngFor = 'let item of itir.placeModels'>
-            <td *ngFor = 'let it of item'>{{it}}</td>
-        </tr>
-    </table>
-    <h6> Rating: </h6> <pm-star [rating]='itir.ratings'> star </pm-star>
-    <h6> Total Cost: {{itir.totalCost | currency:'USD':'symbol':'1.2-2'}}</h6>
-    <h6> User Reviews: {{itir.bag}}</h6>
+    <div *ngIf = "itir" >
+        <img [src]="itir.imgurl | async" style="width:400px;height:250px; float: right;margin:3em;" >
+        <div>
+            <h6 style="margin-top: 1em ;">State: {{itir.city}}</h6>
+            <h6 style="margin-top: 1em ;">Number Of Days: {{itir.daysCount}}</h6>
+            <h6 style="margin-top: 1em ;"> Rating: </h6> <pm-star [rating]='itir.ratings'> star </pm-star>
+            <h6 style="margin-top: 1em ;"> Total Cost: {{itir.totalCost | currency:'USD':'symbol':'1.2-2'}}</h6>
+            <h6 style="margin-top: 1em ;"> User Reviews: {{itir.bag}}</h6>
+        </div>
+        <div style= "float: left; margin-top: 1em;">
+            <table class="table table-striped" >
+                <thead>
+                    <tr>
+                        <th> Place </th>
+                        <th> No. Of Days </th>
+                        <th> Price </th>
+                    </tr>
+                </thead>
+                <tr scope="col" *ngFor = 'let item of itir.placeModels'>
+                    <td *ngFor = 'let it of item'>{{it}}</td>
+                </tr>
+            </table>
+        </div>
     </div>
 </div>
