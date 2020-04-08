@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http'
-import { iti } from 'src/app/Interfaces/iti';
+//import { iti } from 'src/app/Interfaces/iti';
 import { AuthService } from 'src/shared/services/auth.service';
 import { AngularFireStorage } from '@angular/fire/storage';
 @Component({
@@ -12,14 +12,14 @@ import { AngularFireStorage } from '@angular/fire/storage';
 export class ItiDetailsComponent implements OnInit {
 
   constructor(public route: ActivatedRoute, public router: Router, public httpClient : HttpClient, public authService : AuthService, private storage : AngularFireStorage) { }
-  itir : iti = null;
+  itir : any = null;
   ngOnInit() {
     const iti_id = this.route.snapshot.paramMap.get('id');
     let temp : string ;
     let t = iti_id;
     console.log("See this", t)
     temp = 'http://iti-planner.herokuapp.com/itinerary/'+t;
-    this.httpClient.get<iti>(temp).subscribe(data => {
+    this.httpClient.get<any>(temp).subscribe(data => {
       this.itir = data ;
       const no = Math.floor(Math.random() * 5) + 1;
       const nos : string = no.toString();
