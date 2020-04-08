@@ -21,6 +21,9 @@ const routes: Routes = [
   { path: 'verify-email-address', component: VerifyEmailComponent },
   { path: 'search', component: SearchComponent, canActivate : [AuthGuard] },
   { path: 'itinerary/:id', component: ItiDetailsComponent, canActivate : [AuthGuard] },
+  { path: 'profile', redirectTo : '/dashboard', pathMatch: 'full'  },
+  { path: 'customize', redirectTo : '/dashboard', pathMatch: 'full'  },
+  { path: 'settings', redirectTo : '/dashboard', pathMatch: 'full'  },
   { path: '**', redirectTo : '/sign-in', pathMatch: 'full'  }
 ];
 
