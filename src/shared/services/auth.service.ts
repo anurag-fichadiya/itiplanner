@@ -55,17 +55,19 @@ export class AuthService {
   }
 
   // Sign up with email/password
-  SignUp(email, password, mobNo, name) {
+  SignUp(email: string, password: string, mobNo: any, aname: any) {
     return this.afAuth.auth
       .createUserWithEmailAndPassword(email, password)
       .then(result => {
         /* Call the SendVerificaitonMail() function when new user sign 
         up and returns promise */
-        this.SetUserDataNew(result.user, mobNo, name);
+        this.SetUserDataNew(result.user, mobNo, aname);
         this.SendVerificationMail();
         this.SetUserData(result.user);
         this.userData = result.user;
+        //this.userData.user.displayName = aname;
         localStorage.setItem("user", JSON.stringify(this.userData));
+        //console.log("from signup ", t.user)
         console.log("from SIGNUP  email pwd frunction \n ", result.user);
       })
       .catch(error => {
@@ -112,6 +114,7 @@ export class AuthService {
         this.ngZone.run(() => 
         {
           this.SetUserData(result.user);
+          this.SetUserDataNew(result.user, "0000000000", result.user.displayName)
           console.log("from authlogin frunction \n ", result.user);
           this.userData = result.user;
           localStorage.setItem("user", JSON.stringify(this.userData));
@@ -142,7 +145,6 @@ export class AuthService {
       merge: true
     });
   }
-
   // Sign out
   SignOut() {
     return this.afAuth.auth.signOut().then(() => {
