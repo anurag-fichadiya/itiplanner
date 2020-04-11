@@ -14,7 +14,7 @@ import { city } from 'src/shared/Interfaces/iternary';
 })
 export class HistoryComponent implements OnInit {
   ItineraryList : iti[] ;
-  constructor(private authService : AuthService,private dataService : DataService,  public httpClient : HttpClient, private storage : AngularFireStorage) { }
+  constructor(public authService : AuthService, public dataService : DataService,  public httpClient : HttpClient, public storage : AngularFireStorage) { }
   ngOnInit()
   {
     let user = JSON.parse(localStorage.getItem("user"));
