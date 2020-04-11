@@ -1,0 +1,38 @@
+<app-top-bar></app-top-bar>
+<!--WHOLE ITI LIST BELOW-->
+<div *ngIf="authService.userData as user" >
+  <div class='card' >
+    <div *ngIf = 'ItineraryList'>
+      <div *ngIf = 'ItineraryList.length !== 0 ; else elseblock'>
+        <h3> See your travelled itineraries !  </h3>
+        <table class="table table-striped" >
+          <thead>
+            <tr scope = "col">
+              <th> Image </th>
+              <th> State </th>
+              <th> Days </th>
+              <th> Places </th>
+              <th> Rating </th>
+              <th> Cost </th>
+            </tr>
+          </thead>
+        <tr scope="col" *ngFor = 'let iti of ItineraryList '>
+          <td> <img [src] = "iti.imgurl | async" style = "width: 300px; height: 200px ;" /> </td>
+          <td> <a style="color: black; text-decoration: none;"  [routerLink]="['/itinerary', iti.id ]"> {{iti.city}} </a> </td>
+          <td> {{iti.daysCount}} </td>
+          <table>
+            <tr scope="col" *ngFor = 'let item of iti.places '>
+              <td>{{item}}</td>
+            </tr>
+          </table>
+          <td> <pm-star [rating]='iti.ratings'> star </pm-star> </td>
+          <td> {{iti.totalCost | currency:'INR':'symbol':'1.2-2'}} </td>
+        </tr>
+        </table>
+      </div>
+      <ng-template #elseblock>
+        <h3> You don't have any history yet !  </h3>
+      </ng-template>
+    </div>
+  </div>
+</div>

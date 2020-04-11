@@ -1,38 +1,30 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, asNativeElements } from '@angular/core';
 import { AuthService } from 'src/shared/services/auth.service';
 import { DataService } from 'src/shared/services/data.service';
-import { city } from 'src/shared/Interfaces/iternary';
+import { HttpClient } from '@angular/common/http';
+
 import { iti } from './../../Interfaces/iti';
 import { AngularFireStorage } from '@angular/fire/storage';
-import { Observable } from 'rxjs';
+import { city } from 'src/shared/Interfaces/iternary';
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  selector: 'app-history',
+  templateUrl: './history.component.html',
+  styleUrls: ['./history.component.css']
 })
-export class DashboardComponent implements OnInit {
-  
-  profileUrl: Observable<string | null>;
-  constructor(public authService :  AuthService, public dataService : DataService, public storage : AngularFireStorage ) { }
-  
-  ItineraryList : city[] = [ ];
-  user : any;
-  reco_list : iti[];
-  reco_listtemp : iti[];
+export class HistoryComponent implements OnInit {
+  ItineraryList : iti[] ;
+  constructor(private authService : AuthService,private dataService : DataService,  public httpClient : HttpClient, private storage : AngularFireStorage) { }
   ngOnInit()
-   {
-    let temp : string ;
-    let t = JSON.parse(localStorage.getItem("user"))
-    console.log("See this", t.uid)
-    temp = 'user/'+t.uid;
-    this.dataService.getpy(temp).subscribe(data => {
-      this.reco_listtemp = data;
-      console.log("actual this.reco_list ",this.reco_listtemp);
-      this.reco_list = this.anu(this.reco_listtemp) ;
-      console.log("typeof(this.reco_list)",this.reco_list);
+  {
+    let user = JSON.parse(localStorage.getItem("user"));
+    console.log("Frm histoty",user)
+    this.dataService.getpy("history/"+user.uid)
+    .subscribe( data => {
+      console.log("from history ", data);
+      this.ItineraryList = this.anu(data);
       let count = 1;
-      this.reco_list.forEach(item => {
+      this.ItineraryList.forEach(item => {
         //const no = Math.floor(Math.random() * 5) + 1;
         count = count + 1;
         const nos : string = count.toString();

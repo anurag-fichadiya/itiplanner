@@ -11,6 +11,7 @@ import { AuthGuard } from "../guard/auth.guard";
 import { VerifyEmailComponent } from '../../app/components/verify-email/verify-email.component';
 import { SearchComponent } from 'src/app/components/search/search.component';
 import { ItiDetailsComponent } from 'src/app/components/iti-details/iti-details.component';
+import { HistoryComponent } from 'src/app/components/history/history.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/sign-in', pathMatch: 'full' },
@@ -21,9 +22,8 @@ const routes: Routes = [
   { path: 'verify-email-address', component: VerifyEmailComponent },
   { path: 'search', component: SearchComponent, canActivate : [AuthGuard] },
   { path: 'itinerary/:id', component: ItiDetailsComponent, canActivate : [AuthGuard] },
-  { path: 'profile', redirectTo : '/dashboard', pathMatch: 'full'  },
+  { path: 'history', component: HistoryComponent, canActivate : [AuthGuard] },
   { path: 'customize', redirectTo : '/dashboard', pathMatch: 'full'  },
-  { path: 'settings', redirectTo : '/dashboard', pathMatch: 'full'  },
   { path: '**', redirectTo : '/sign-in', pathMatch: 'full'  }
 ];
 

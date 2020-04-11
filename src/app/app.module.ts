@@ -27,6 +27,7 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { SearchComponent } from './components/search/search.component';
 import { TopBarComponent } from './components/top-bar/top-bar.component';
 import { ItiDetailsComponent } from './components/iti-details/iti-details.component';
+import { HistoryComponent } from './components/history/history.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { ItiDetailsComponent } from './components/iti-details/iti-details.compon
     SearchComponent,
     TopBarComponent,
     ItiDetailsComponent,
+    HistoryComponent,
   ],
   imports: [
     BrowserModule,
