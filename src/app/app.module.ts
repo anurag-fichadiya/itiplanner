@@ -31,8 +31,6 @@ import { HistoryComponent } from './components/history/history.component';
 import { CustomizeComponent } from './components/customize/customize.component';
 
 import { GooglePlaceModule } from "ngx-google-places-autocomplete";
-import { DocumentEditorAllModule, PrintService } from '@syncfusion/ej2-angular-documenteditor';
-
 
 @NgModule({
   declarations: [
@@ -62,9 +60,8 @@ import { DocumentEditorAllModule, PrintService } from '@syncfusion/ej2-angular-d
     AngularFontAwesomeModule,
     FormsModule,
     GooglePlaceModule,
-    DocumentEditorAllModule
   ],
-  providers: [AuthService, DataService, PrintService],
+  providers: [AuthService, DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

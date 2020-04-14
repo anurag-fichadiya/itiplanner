@@ -17,7 +17,12 @@
       </tr>
     </thead>
   <tr scope="col" *ngFor = 'let iti of addressvec'>
-    <td><img [src]="iti.photos[0].getUrl({'maxWidth': 250, 'maxHeight': 500})" style="width:250px;height:150px;" alt = "{{iti.name}}" > </td>
+    <td *ngIf = 'iti.photos != undefined ; else elseblock' > 
+      <img [src]="iti.photos[0].getUrl({'maxWidth': 250, 'maxHeight': 500})" style="width:250px;height:150px;" alt = "{{iti.name}}" > 
+    </td>
+    <ng-template #elseblock>
+      <td> <img src = './../../../../assets/images/landscape.jpg' style="width:250px;height:150px;"> </td>
+    </ng-template>
     <td> {{iti.name}} </td>
     <td> <pm-star [rating]='iti.rating'> </pm-star> </td>
     <td> <button class = "btn btn primary" style="background-color :deepskyblue;"  (click) = "removeItem(iti)"> Remove </button></td> 
