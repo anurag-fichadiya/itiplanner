@@ -28,6 +28,11 @@ import { SearchComponent } from './components/search/search.component';
 import { TopBarComponent } from './components/top-bar/top-bar.component';
 import { ItiDetailsComponent } from './components/iti-details/iti-details.component';
 import { HistoryComponent } from './components/history/history.component';
+import { CustomizeComponent } from './components/customize/customize.component';
+
+import { GooglePlaceModule } from "ngx-google-places-autocomplete";
+import { DocumentEditorAllModule, PrintService } from '@syncfusion/ej2-angular-documenteditor';
+
 
 @NgModule({
   declarations: [
@@ -43,6 +48,7 @@ import { HistoryComponent } from './components/history/history.component';
     TopBarComponent,
     ItiDetailsComponent,
     HistoryComponent,
+    CustomizeComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,9 +60,11 @@ import { HistoryComponent } from './components/history/history.component';
     AppRoutingModule,
     HttpClientModule,
     AngularFontAwesomeModule,
-    FormsModule
+    FormsModule,
+    GooglePlaceModule,
+    DocumentEditorAllModule
   ],
-  providers: [AuthService, DataService],
+  providers: [AuthService, DataService, PrintService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

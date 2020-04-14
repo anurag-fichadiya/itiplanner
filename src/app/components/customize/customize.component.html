@@ -1,0 +1,54 @@
+<app-top-bar> </app-top-bar>
+<div class='row' style="margin-top: 1.2em; margin-bottom: 1.2em;">
+    <div style = "margin-left : 2em ; margin-right: 2em; font-style: italic; font-weight: 500;">
+        Search your dream place :
+    </div>
+    <div class='col-md-4'>
+        <input ngx-google-places-autocomplete #placesRef="ngx-places" [options] = 'options' (onAddressChange)="handleAddressChange($event)" style="width: 500px;"/>
+    </div>
+</div>
+<table class="table table-striped" >
+    <thead>
+      <tr scope = "col">
+        <th> Image </th>
+        <th> Place </th>
+        <th> Rating </th>
+        <th> Remove </th>
+      </tr>
+    </thead>
+  <tr scope="col" *ngFor = 'let iti of addressvec'>
+    <td><img [src]="iti.photos[0].getUrl({'maxWidth': 250, 'maxHeight': 500})" style="width:250px;height:150px;" alt = "{{iti.name}}" > </td>
+    <td> {{iti.name}} </td>
+    <td> <pm-star [rating]='iti.rating'> </pm-star> </td>
+    <td> <button class = "btn btn primary" style="background-color :deepskyblue;"  (click) = "removeItem(iti)"> Remove </button></td> 
+  </tr>
+</table>
+
+<div class="wrapper">
+    <button class="btn btn primary" style="font-weight: bold; background-color: deepskyblue;" (click) = "geniti()"> Generate Automated Itinerary</button>
+</div>
+
+<div  id = "content"  #content  style="visibility: hidden;">
+      <table >
+        <thead>
+          <tr>
+            <th> Place </th>
+            <th> Address </th>
+          </tr>
+        </thead>
+      <tr *ngFor = 'let iti of addressvec'>
+        <td> {{iti.name}} </td>
+        <td>
+        <table>
+            <tr *ngFor = 'let ad of iti.address_components'>
+                <td>{{ad.long_name}}, </td>
+            </tr>
+        </table>
+        </td>
+      </tr>
+    </table>
+</div>
+
+
+  <!--GET REFERENCE: place.photos[0].getUrl({'maxWidth': 500, 'maxHeight': 500})-->
+  <!--<ejs-documenteditor #document_editor style="width:100%;height:100%;display:block" [enablePrint]=true (created)="onCreated()"></ejs-documenteditor>-->

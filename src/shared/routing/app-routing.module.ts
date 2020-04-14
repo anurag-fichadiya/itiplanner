@@ -12,6 +12,7 @@ import { VerifyEmailComponent } from '../../app/components/verify-email/verify-e
 import { SearchComponent } from 'src/app/components/search/search.component';
 import { ItiDetailsComponent } from 'src/app/components/iti-details/iti-details.component';
 import { HistoryComponent } from 'src/app/components/history/history.component';
+import { CustomizeComponent } from 'src/app/components/customize/customize.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/sign-in', pathMatch: 'full' },
@@ -23,7 +24,7 @@ const routes: Routes = [
   { path: 'search', component: SearchComponent, canActivate : [AuthGuard] },
   { path: 'itinerary/:id', component: ItiDetailsComponent, canActivate : [AuthGuard] },
   { path: 'history', component: HistoryComponent, canActivate : [AuthGuard] },
-  { path: 'customize', redirectTo : '/dashboard', pathMatch: 'full'  },
+  { path: 'customize', component: CustomizeComponent, canActivate : [AuthGuard] },
   { path: '**', redirectTo : '/sign-in', pathMatch: 'full'  }
 ];
 

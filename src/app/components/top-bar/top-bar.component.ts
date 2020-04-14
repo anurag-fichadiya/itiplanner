@@ -14,7 +14,8 @@ export class TopBarComponent implements OnInit {
   ngOnInit()
   {
     let user = JSON.parse(localStorage.getItem("user"));//this.authService.userData;
-    let name : string;
+    this.uname = user.displayName;
+    /*let name : string;
     this.userdetails = this.fireDB.database
       .ref("Users")
       .child(user.uid)
@@ -24,7 +25,7 @@ export class TopBarComponent implements OnInit {
     console.log("From top bar", this.authService.userData)
     console.log("From top bar - localstorage", JSON.parse(localStorage.getItem("user")))
     this.uname = this.userdetails.then(data => this.uname = data.name);
-    console.log("Final uname", this.uname)
+    console.log("Final uname", this.uname)*/
   }
   
 }
