@@ -23,8 +23,16 @@
     <ng-template #elseblock>
       <td> <img src = './../../../../assets/images/landscape.jpg' style="width:250px;height:150px;"> </td>
     </ng-template>
-    <td> {{iti.name}} </td>
-    <td> <pm-star [rating]='iti.rating'> </pm-star> </td>
+    <td *ngIf = 'iti.name != undefined ; else elseblock1'> {{iti.name}} </td>
+    <ng-template #elseblock1>
+      <td> Name of Place </td>
+    </ng-template>
+    <td *ngIf = 'iti.rating != undefined ; else elseblock2'>
+       <pm-star [rating]='iti.rating'> </pm-star>
+    </td>
+    <ng-template #elseblock2>
+      <td> <pm-star [rating]='5'> </pm-star> </td>
+    </ng-template>
     <td> <button class = "btn btn primary" style="background-color :deepskyblue;"  (click) = "removeItem(iti)"> Remove </button></td> 
   </tr>
 </table>
