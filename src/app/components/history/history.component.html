@@ -18,7 +18,7 @@
           </thead>
         <tr scope="col" *ngFor = 'let iti of ItineraryList '>
           <td> <img [src] = "iti.imgurl | async" style = "width: 300px; height: 200px ;" /> </td>
-          <td> <a style="color: black; text-decoration: none;"  [routerLink]="['/itinerary', iti.id ]"> {{iti.city}} </a> </td>
+          <td> <a style=" text-decoration: none;"  [routerLink]="['/itinerary', iti.id ]"> {{iti.city}} </a> </td>
           <td> {{iti.daysCount}} </td>
           <table>
             <tr scope="col" *ngFor = 'let item of iti.places '>

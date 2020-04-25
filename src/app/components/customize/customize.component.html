@@ -38,9 +38,10 @@
 </table>
 
 <div class="wrapper">
-    <button class="btn btn primary" style="font-weight: bold; background-color: deepskyblue;" (click) = "geniti()"> Generate Automated Itinerary</button>
-</div>
+  <button class="btn btn primary" style="font-weight: bold; background-color: deepskyblue;" (click) = "gen_button()"> Reorder as per Shortest Path </button>
 
+  <button class="btn btn primary" style="font-weight: bold; background-color: deepskyblue; margin-left: 2em;" (click) = "geniti()"> Generate Automated Itinerary</button>
+</div>
 <div  id = "content"  #content  style="visibility: hidden;">
       <table >
         <thead>
@@ -50,12 +51,22 @@
           </tr>
         </thead>
       <tr *ngFor = 'let iti of addressvec'>
-        <td> {{iti.name}} </td>
+        <td *ngIf = 'iti.name != undefined ; else elseblock5'> {{iti.name}} </td>
+        <ng-template #elseblock5>
+          <td> Name of Place </td>
+        </ng-template>
         <td>
         <table>
-            <tr *ngFor = 'let ad of iti.address_components'>
-                <td>{{ad.long_name}}, </td>
-            </tr>
+            <div *ngIf= 'iti.address_components != undefined ; else elseblock6'>
+              <tr *ngFor = 'let ad of iti.address_components'>
+                  <td>{{ad.long_name}}, </td>
+              </tr>
+            </div>
+            <ng-template #elseblock6>
+              <tr>
+                <td>{{Address}}, </td>
+              </tr>
+            </ng-template>
         </table>
         </td>
       </tr>
