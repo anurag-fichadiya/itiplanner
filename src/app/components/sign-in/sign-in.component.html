@@ -2,22 +2,47 @@
   <div id="formContent">
     <div>
       <h1 style="margin-top: 0.8em;">ITINERARY PLANNER</h1>
-      
+
       <div class="fadeIn first">
-        <img src="./../../../assets/images/logo.png" id="icon" alt="User Icon" />
+        <img
+          src="./../../../assets/images/logo.png"
+          id="icon"
+          alt="User Icon"
+        />
       </div>
       <h3 style="margin-top: 0.8em;">Log In</h3>
       <div>
-        <input type="email" id="login" class="fadeIn second" name="login" placeholder="email" #userName required>
+        <input
+          type="email"
+          id="login"
+          class="fadeIn second"
+          name="login"
+          placeholder="email"
+          #userName
+          required
+        />
       </div>
 
       <div>
-        <input type="password" id="password" class="fadeIn third" name="login" placeholder="password" #userPassword required>
+        <input
+          type="password"
+          id="password"
+          class="fadeIn third"
+          name="login"
+          placeholder="password"
+          #userPassword
+          required
+        />
       </div>
 
       <!-- Calling SignIn Api from AuthService -->
       <div>
-        <input type="submit" class="fadeIn fourth" value="Log In" (click)="authService.SignIn(userName.value, userPassword.value)">
+        <input
+          type="submit"
+          class="fadeIn fourth"
+          value="Log In"
+          (click)="authService.SignIn(userName.value, userPassword.value)"
+        />
       </div>
 
       <div>
@@ -26,20 +51,35 @@
 
       <!-- Calling GoogleAuth Api from AuthService -->
       <div>
-        <button type="button" class="loginBtn loginBtn--google" (click)="authService.GoogleAuth()">
+        <button
+          type="button"
+          class="loginBtn loginBtn--google"
+          (click)="authService.GoogleAuth()"
+        >
           <i class="fab fa-google-plus-g"></i>
           Log in with Google
         </button>
       </div>
 
       <div id="formFooter">
-        <span class="underlineHover" href="#" routerLink="/forgot-password">Forgot Password?</span>
+        <span class="underlineHover" href="#" routerLink="/forgot-password"
+          >Forgot Password?</span
+        >
       </div>
     </div>
 
     <div id="formFooter">
-      <span class="underlineHover" href="#"><span class="redirect" routerLink="/register-user"> Don't have an account? Sign Up</span></span>
+      <span class="underlineHover" href="#"
+        ><span class="redirect" routerLink="/register-user">
+          Don't have an account? Sign Up</span
+        ></span
+      >
     </div>
 
+    <div id="formFooter">
+      <span class="underlineHover" href="#" (click)="downloadAPK()"
+        >Download APK</span
+      >
+    </div>
   </div>
 </div>
